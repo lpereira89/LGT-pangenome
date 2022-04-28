@@ -15,13 +15,13 @@ source /usr/local/extras/Genomics/.bashrc
 
 #### Directories and input files
 
+wd=/mnt/fastdata/bo1lpg/pangenome-pipeline/
 # Directory containing the CDS fasta files. One subdirectory for each genome.
 # CDS fasta file named {GenomeID}.cds.fa. One subdirectory for each genome, named {GenomeID}
 # GenomeID has to be 'Genus_species_00n', e.g. 'Zea_mays_001' for the first Zea mays genome
 # !!! Whenever possible, include ONLY primary transcripts
-
-CDS=/mnt/fastdata/bo1lpg/pangenome-pipeline/CDS
-ctrl_files=/mnt/fastdata/bo1lpg/pangenome-pipeline/ctrl_files
+CDS=${wd}/CDS
+ctrl_files=${wd}/ctrl_files
 
 cd ${CDS}
 
