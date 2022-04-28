@@ -5,10 +5,10 @@
 #$ -l h_rt=96:00:00
 
 #####################################################################################
-#	Script Name: 	Alien_index_blastn_loop.sh
+#	Script Name: 	blastn_loop.sh
 #	Description: 	Run a loop of blastn and processing results, used in conjunction with Alien_index_blastn.sh
 #	Author:		LTDunning
-#	Last updated:	11/07/2021, LPG
+#	Last updated:	28/04/2022, LPG
 #####################################################################################
 
 source /usr/local/extras/Genomics/.bashrc
