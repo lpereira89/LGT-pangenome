@@ -37,4 +37,14 @@ This script calls a nested script for each of the genomes conforming the target 
 1. Create/copy a database directory `BlastDB-separate`. This folder contains individual blast databases for each donor genome. **If the databases are not available, use `makeblastdb -in <donor.cds.fa> -dbtype nucl` for each donor.**
 2. Create/copy a text file with a list of donor genomes to be included in the analyses in the folder `ctrl_files`. The default is the file *BlastDBs_n67.txt* used for maize pan-genome.
 3. Change the minimum length required for the blast fragments. The default is min_blast_aln_length=300.
-4. Run `PG_02a_call_blastn_to_align.sh`.
+4. Run script `PG_02a_call_blastn_to_align.sh`.
+
+## Classify alignments
+
+**Script: PG_03_alignment_filter.sh**
+
+This script classifies and moves the alignments according to the number of taxa and the number of sequences. The pipeline focuses on the alignments with <200 sequences and >10 species.
+
+1. Modify the parameter ID according to the GenomeID used, e.g. ID="Zea_mays" for the maize pan-genome.
+2. Run script `PG_03_alignment_filter.sh`.
+3. Check if there are alignments with >200 sequences (unlikely) --> if there are some, consider if they have to be included in the analysis and modify the pipeline accordingly.
