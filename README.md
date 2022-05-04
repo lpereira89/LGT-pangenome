@@ -77,3 +77,14 @@ This script calls a nested script to identify the groups that are sister to the 
 1. Change the parameter `target_group` according to the target pan-genome being analyzed.
 2. Create/copy a *species_list* file in `ctrl_files` directory. The list must include all the species in the database, one per line, with the same exact name and the group to which they belong, separated by tabs.
 3. Run the script `PG_06_IDsister.sh`.
+
+## Blast target sequences and align the best hits
+
+**Script: PG_07_blastn_to_align_step2.sh**
+
+This script uses the list of LGT candidates to start a new iteration of blast-align-tree. At this step, not only genomes but also transcriptomes are included in the BlastDB. 
+
+1. The minimum length of the blast hit to be included in the alignment can be defined as a parameter, e.g. 300 in the example.
+2. Check the transcriptomes to be included in the database. Currently, there is a list from in a shared directory, but that can be easily customized in Step 2.
+3. Run the script `PG_07_blastn_to_align_step2.sh`.
+4. Check manually the file *missing_alignments.txt*. These two files must be empty, if there are gene IDs the log file needs to be inspected to identify the problem in each case. **Previous issues were that too many NNNs were in the sequences, that genes were too long, and that complex characters were part of the FASTA ID - these issues should be solved now in script PG_00_prepareCDS.sh. However, similar issues might arise when working with other genomes.**
