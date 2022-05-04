@@ -48,3 +48,14 @@ This script classifies and moves the alignments according to the number of taxa 
 1. Modify the parameter ID according to the GenomeID used, e.g. ID="Zea_mays" for the maize pan-genome.
 2. Run script `PG_03_alignment_filter.sh`.
 3. Check if there are alignments with >200 sequences (unlikely) --> if there are some, consider if they have to be included in the analysis and modify the pipeline accordingly.
+
+## Construct trees
+
+**Script: PG_04_initial_trees.sh**
+
+This script uses SMS to construct maximum likelihood trees using the best model (100 bootstraps). It uses an array job to do it, meaning one script per tree will run, but there is only need to submit one script. 
+
+1. Change the heading of the script to adjust the number of trees to construct in the line `#$ -t 1-21680`. The number 21680 is an example, it needs to be substituted by the number of alignments to be used. **Check this number by running `ls | wc -l` within the alignment's folder, e.g. `${wd}/results_03_alignments_filtered/10_species_or_more/less_than_200seqs`.
+2. The software used to construct trees, SMS, has a character limit for FASTA ID. If the names of the sequences are too long, it will give an error and exit without constructing the tree. To solve this, the FASTA IDs are cleaned before using SMS (Step 1). The parameters to be removed from those FASTA IDs can be adjusted, e.g. currently only 'evm.model' is removed, and that is enough for SMS to run. **This might change if new genomes are incorporated to the database**. If more genomes are included, check the FASTA IDs and if there are some long ones, identify a common pattern and include it into the Step 1 of the script.
+3. Run the script `PG_04_initial_trees.sh`.
+4. Check in the results folder whether some trees failed by using the code `grep -B 1 'empty' check_empty.txt`. If there are trees that failed, they will be listed as standard output after the grep command, and the log files will need to be inspected one by one to find the problem.
