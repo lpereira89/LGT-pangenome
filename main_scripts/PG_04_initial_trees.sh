@@ -27,7 +27,7 @@ scriptname=PG_04_initial_trees.sh
 # 'make' from this file /shared/dunning_lab/Shared/scripts/programs/sms-1.8.1.zip
 # !!! sms fails to construct the tree if seq names are too long - first step to clean names
 sms=/shared/dunning_lab/Shared/programs/sms-1.8.1/./sms.sh
-fasta_to_phylip=/shared/dunning_lab/Shared/scripts/perl/Fasta2Phylip.pl
+fasta_to_phylip=${wd}/nested_scripts/Fasta2Phylip.pl
 
 #### Parameters
 rmname='evm.model'

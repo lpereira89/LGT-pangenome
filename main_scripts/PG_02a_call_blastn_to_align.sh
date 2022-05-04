@@ -19,7 +19,7 @@ results=${wd}/results_02_blastn_to_aln
 genomes=${wd}/ctrl_files/list_genomes.txt
 
 #### Scripts
-loop=${wd}/ctrl_files/PG_02b_blastn_to_align.sh
+loop=${wd}/nested_scripts/PG_02b_blastn_to_align.sh
 
 #### step 1: generate and run separate blastn script for each genome
 cd ${wd}
