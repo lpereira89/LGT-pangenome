@@ -4,7 +4,7 @@ This file describes the in-house pipeline used for de novo identification of lat
 
 Most of the bash scripts need to be inspected and modified according to the user's folder structure, target pan-genome and genomes to be included in the analyses. These files, directories and parameters are defined **at the beginning** of the scripts, so the user can easily generate their own custom versions for each pan-genome.
 
-## Preparing the genomes
+## Prepare the genomes
 
 **Script: PG_00_PrepareCDS.sh**
 
@@ -28,7 +28,7 @@ This script generates a database containing **all genomes** to be included in th
 4. Modify the native group in the nested script `PG_01b_blastn_loop.sh`, according to the target pan-genome, e.g. Andropogoneae for maize pan-genome.
 5. Run script `PG_01a_initial_blastn_filter.sh`.
 
-## Generating multiple alignments
+## Generate multiple alignments
 
 **Script: PG_02a_call_blastn_to_align.sh**
 
@@ -59,3 +59,21 @@ This script uses SMS to construct maximum likelihood trees using the best model 
 2. The software used to construct trees, SMS, has a character limit for FASTA ID. If the names of the sequences are too long, it will give an error and exit without constructing the tree. To solve this, the FASTA IDs are cleaned before using SMS (Step 1). The parameters to be removed from those FASTA IDs can be adjusted, e.g. currently only 'evm.model' is removed, and that is enough for SMS to run. **This might change if new genomes are incorporated to the database**. If more genomes are included, check the FASTA IDs and if there are some long ones, identify a common pattern and include it into the Step 1 of the script.
 3. Run the script `PG_04_initial_trees.sh`.
 4. Check in the results folder whether some trees failed by using the code `grep -B 1 'empty' check_empty.txt`. If there are trees that failed, they will be listed as standard output after the grep command, and the log files will need to be inspected one by one to find the problem.
+
+## Midpoint root the trees
+
+**Script: PG_05_midpoint_rooting.sh**
+
+This script roots the trees using midpoint rooting.
+
+1. Run the script `PG_05_midpoint_rooting.sh`.
+
+## Identify sister relationships
+
+**Script: PG_06_IDsister.sh**
+
+This script calls a nested script to identify the groups that are sister to the LGT candidate in the trees. Then the results are parsed to get a list of LGT candidates for which the LGT is nested in a group different from the target pan-genome, e.g. Andropogoneae in the example, and this nesting is supported by a minimum bootstrap, e.g. 50 in the example.
+
+1. Change the parameter `target_group` according to the target pan-genome being analyzed.
+2. Create/copy a *species_list* file in `ctrl_files` directory. The list must include all the species in the database, one per line, with the same exact name and the group to which they belong, separated by tabs.
+3. Run the script `PG_06_IDsister.sh`.
