@@ -134,16 +134,16 @@ This step needs to be executed in the user local machine. The alignments need to
 
 ### Inspect the trees
 First, inspect the trees. The criteria to maintain a gene as LGT candidate are:
-a. The LGT candidate is nested within another clade, e.g. a maize candidate LGT nested in Paniceae.
-b. The tree must have >2 taxa within the donor clade and >2 taxa outside of the donor clade.
-c. Obvious paralogy problems in the tree.
+- The LGT candidate is nested within another clade, e.g. a maize candidate LGT nested in Paniceae.
+- The tree must have >2 taxa within the donor clade and >2 taxa outside of the donor clade.
+- Obvious paralogy problems in the tree.
 The trees that comply with these three criteria are then selected for further inspection of their multiple alignments.
 
 ### Edit the alignments
 Second, edit the alignment in Geneious. 
-a. Build a tree using GTR method.
-b. Frame the protein guided by the LGT candidate (full CDS). Since the other sequences are from blast hits, not complete CDS, the frame will not always be correct. Delete bases when needed to correct the frame, either at the start of the sequence or within the sequence around small indels.
-c. For the same species for which only transcriptomes are available, sometimes there are several small sequences that correspond to one unique transcript. In such cases, join the fragments of transcripts in one unique, longer sequence, making sure to keep the correct frame.
-d. Build a new tree using the translation mode.
-e. Check again the alignment and make sure that the frame is correct for all sequences. **If it is not, keep trimming bases until they are all correct**.
-f. Since the sequences are from blast hits, and not complete CDS, an artifact is caused at the end of the alignment. One or two bases are artificially aligned to the last codon, generating an 'artificial' long gap. Delete these one or two bases in all sequences.
+- Build a tree using GTR method.
+- Frame the protein guided by the LGT candidate (full CDS). Since the other sequences are from blast hits, not complete CDS, the frame will not always be correct. Delete bases when needed to correct the frame, either at the start of the sequence or within the sequence around small indels.
+- For the same species for which only transcriptomes are available, sometimes there are several small sequences that correspond to one unique transcript. In such cases, join the fragments of transcripts in one unique, longer sequence, making sure to keep the correct frame.
+- Build a new tree using the translation mode.
+- Check again the alignment and make sure that the frame is correct for all sequences. **If it is not, keep trimming bases until they are all correct**.
+- Since the sequences are from blast hits, and not complete CDS, an artifact is caused at the end of the alignment. One or two bases are artificially aligned to the last codon, generating an 'artificial' long gap. Delete these one or two bases in all sequences.
