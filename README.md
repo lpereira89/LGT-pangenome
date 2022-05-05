@@ -115,11 +115,25 @@ This script selects the best duplicate as representative for each LGT. The crite
 
 1. Run the script `PG_08c_select_dup.sh`.
 
-## Inspect manually the selected alignments
+## Construct trees
 
-This step needs to be executed in the user local machine. The alignments need to be trimmed, corrected and cleaned to improve the quality of the phylogenetic trees.
+**Script: PG_09_more_trees.sh**
 
-1. Download to local machine the selected alignments from the directory `${working_directory}/results_08_mark_dups/Fasta_mafft_alignments/selected-aln`. 
-2. Install/gain access to Geneious or a similar software to inspect and edit sequences.
-3. Open the alignments in Geneious.
-4. 
+This script uses SMS to construct maximum likelihood trees using the best model. It uses an array job to do it, meaning one script per tree will run, but there is only need to submit one script. 
+
+1. Change the heading of the script to adjust the number of trees to construct in the line `#$ -t 1-152`. The number 152 is an example, it needs to be substituted by the number of alignments to be used. **Check this number by running `ls | wc -l` within the alignment's folder.**
+2. The software used to construct trees, SMS, has a character limit for FASTA ID. If the names of the sequences are too long, it will give an error and exit without constructing the tree. To solve this, the FASTA IDs are cleaned before using SMS (Step 1). The parameters to be removed from those FASTA IDs can be adjusted, e.g. currently only 'evm.model' is removed, and that is enough for SMS to run. **This might change if new genomes are incorporated to the database**. If more genomes are included, check the FASTA IDs and if there are some long ones, identify a common pattern and include it into the Step 1 of the script.
+3. Run the script `PG_09_more_trees.sh`.
+
+## Inspect manually the selected alignments and trees
+
+This step needs to be executed in the user local machine. The alignments need to be trimmed, corrected and cleaned to improve the quality of the phylogenetic trees in the following steps.
+
+1. Download to local machine the selected alignments from the directory `${working_directory}/results_08_mark_dups/Fasta_mafft_alignments/selected-aln` and the corresponding trees from the directory `${wd}/results_09_more_trees/combined`. 
+2. Install/gain access to Geneious or a similar software to inspect and edit sequences and trees.
+3. First, inspect the trees. The criteria to maintain a gene as LGT candidate are:
+        a. The LGT candidate is nested within another clade, e.g. a maize candidate LGT nested in Paniceae.
+        b. The tree must have >2 taxa within the donor clade and >2 taxa outside of the donor clade.
+        c. Obvious paralogy problems in the tree.
+   The trees that comply with these three criteria are then selected for further inspection of their multiple alignments.
+4. Second, edit the alignment in Geneious.
