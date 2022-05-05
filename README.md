@@ -107,4 +107,14 @@ This script renames the alignment to ease manual inspection. It adds *LGT_candid
 1. Copy/create a tab-separated text file with one species per row, and three columns: species ID, group and subgroup. **The species ID in this file needs to match exactly the one contained in the FASTA ID in the alignment**, e.g. 'Oryza_sativa_Japonica_Group_GCA_001433935.1' for one of the rice genomes. The group and subgroup will be added as prefixes at the beginning of the FASTA ID.
 2. Run the script `PG_08b_rename_aln.sh`.
 
+## Select best alignment
+
+**Script: PG_08c_select_dup.sh**
+
+This script selects the best duplicate as representative for each LGT. The criteria are: (1) highest number of sequences in the alignment and (2) longest alignment.
+
+1. Run the script `PG_08c_select_dup.sh`.
+
+## Inspect manually the selected alignments
+
 
