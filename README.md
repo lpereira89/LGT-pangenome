@@ -88,3 +88,23 @@ This script uses the list of LGT candidates to start a new iteration of blast-al
 2. Check the transcriptomes to be included in the database. Currently, there is a list from in a shared directory, but that can be easily customized in Step 2.
 3. Run the script `PG_07_blastn_to_align_step2.sh`.
 4. Check manually the file *missing_alignments.txt*. These two files must be empty, if there are gene IDs the log file needs to be inspected to identify the problem in each case. **Previous issues were that too many NNNs were in the sequences, that genes were too long, and that complex characters were part of the FASTA ID - these issues should be solved now in script PG_00_prepareCDS.sh. However, similar issues might arise when working with other genomes.**
+
+## Mark duplicated LGT candidates
+
+**Script: PG_08a_mark_dups.sh**
+
+This script marks the duplicated LGT candidates. Since we performed LGT identification in several independent assemblies, LGT that are present in more than one assembly were likely identified in more than one assembly - but they are orthologous genes, meaning they likely represent the same LGT event. **Only one** orthologous LGT will be kept as a candidate for further analyses.
+
+1. The nested script `sort_homologs_2.pl` works only when copying specific modules (Heap071 Graph Graph.pm) to the same folder where the script is run. There are two solutions: (1) copy the modules into the nested scripts folder *default in script* or (2) run the script from the shared drive (currently `/shared/dunning_lab/Shared/scripts/perl/sort_homologs_2.pl`) *need to change the code*. 
+2. Run the script `PG_08a_mark_dups.sh`.
+
+## Rename the FASTA IDs in alignments
+
+**Script: PG_08b_rename_aln.sh**
+
+This script renames the alignment to ease manual inspection. It adds *LGT_candidate_* prefix to the LGT candidate, and it adds the group ID to all other species.
+
+1. Copy/create a tab-separated text file with one species per row, and three columns: species ID, group and subgroup. **The species ID in this file needs to match exactly the one contained in the FASTA ID in the alignment**, e.g. 'Oryza_sativa_Japonica_Group_GCA_001433935.1' for one of the rice genomes. The group and subgroup will be added as prefixes at the beginning of the FASTA ID.
+2. Run the script `PG_08b_rename_aln.sh`.
+
+
