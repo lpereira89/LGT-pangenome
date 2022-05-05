@@ -117,4 +117,9 @@ This script selects the best duplicate as representative for each LGT. The crite
 
 ## Inspect manually the selected alignments
 
+This step needs to be executed in the user local machine. The alignments need to be trimmed, corrected and cleaned to improve the quality of the phylogenetic trees.
 
+1. Download to local machine the selected alignments from the directory `${working_directory}/results_08_mark_dups/Fasta_mafft_alignments/selected-aln`. 
+2. Install/gain access to Geneious or a similar software to inspect and edit sequences.
+3. Open the alignments in Geneious.
+4. 
