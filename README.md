@@ -147,3 +147,28 @@ Second, edit the alignment in Geneious.
 - Build a new tree using the translation mode.
 - Check again the alignment and make sure that the frame is correct for all sequences. **If it is not, keep trimming bases until they are all correct**.
 - Since the sequences are from blast hits, and not complete CDS, an artifact is caused at the end of the alignment. One or two bases are artificially aligned to the last codon, generating an 'artificial' long gap. Delete these one or two bases in all sequences.
+- Once the alignments are trimmed, export and upload them to ShARC to `${working_directory}/results_08_mark_dups/Fasta_mafft_alignments/aln-clean`.
+
+## Construct final trees
+
+**Script: PG_10_final_trees.sh**
+
+This script generates final trees using the polished alignments following the same approach used above (maximum likelihood trees with SMS).
+
+1. Change the heading of the script to adjust the number of trees to construct in the line `#$ -t 1-120`. The number 120 is an example, it needs to be substituted by the number of alignments to be used. **Check this number by running `ls | wc -l` within the alignment's folder.**
+2. The software used to construct trees, SMS, has a character limit for FASTA ID. If the names of the sequences are too long, it will give an error and exit without constructing the tree. To solve this, the FASTA IDs are cleaned before using SMS (Step 2). The parameters to be removed from those FASTA IDs can be adjusted, e.g. currently only 'evm.model' is removed, and that is enough for SMS to run. **This might change if new genomes are incorporated to the database**. If more genomes are included, check the FASTA IDs and if there are some long ones, identify a common pattern and include it into the Step 2 of the script.
+3. Run the script `PG_10_final_trees.sh`.
+
+## Final manual inspection
+
+This step needs to be executed in the user local machine. The alignments need to be trimmed, corrected and cleaned to improve the quality of the phylogenetic trees in the following steps.
+
+1. Download to local machine the trees from the directory `${wd}/results_10_final_trees/combined`.
+
+Inspect the trees. The criteria to maintain a gene as LGT candidate are:
+- The LGT candidate is nested within another clade, e.g. a maize candidate LGT nested in Paniceae.
+- The tree must have >2 taxa within the donor clade and >2 taxa outside of the donor clade.
+- Obvious paralogy problems in the tree.
+- Bootstrap support >70 supporting the LGT within the donor clade.
+The trees that comply with these criteria are considered **LGT**.
+
