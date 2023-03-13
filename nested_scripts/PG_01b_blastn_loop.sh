@@ -28,7 +28,7 @@ DB_Directory=${wd}/BlastDB-combined
 native="Andropogoneae"
 
 #### Step 1: run blastn
-blastn -query ${CDS}/${Genome}.cds.fa -db ${DB_Directory}/Combined.fa -outfmt 6 > ${results}/${Genome}_1_Blastn_results_all.txt
+blastn -query ${CDS}/${Genome}/${Genome}_final.cds.fa -db ${DB_Directory}/Combined.fa -outfmt 6 > ${results}/${Genome}_1_Blastn_results_all.txt
 
 #### Step 2: list of genes with blast result
 cat ${results}/${Genome}_1_Blastn_results_all.txt | cut -f 1 | sort | uniq > ${results}/${Genome}_2_genes_with_Blastn_matches.txt
