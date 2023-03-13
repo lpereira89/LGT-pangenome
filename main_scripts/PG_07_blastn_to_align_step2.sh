@@ -57,7 +57,9 @@ mkdir results_07_blastn_to_aln
 cd results_07_blastn_to_aln
 mkdir query
 cd query
-cat ${CDS}/* > to_fish
+## !!! OLD CODE - following line should work but double check - 
+## cat ${CDS}/* > to_fish
+cat ${ctrl_files}/list_genomes.txt | while read line ; do cp ${CDS}/${line}/${line}_final.cds.fa > to_fish; done
 cat ${good_aln} | while read line ; do grep "$line" -A 1 to_fish > "$line" ; done
 rm to_fish gene
 ls > ../query.txt
