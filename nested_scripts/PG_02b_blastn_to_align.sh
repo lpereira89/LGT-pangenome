@@ -39,7 +39,7 @@ cd results_02_blastn_to_aln/${Genome}
 mkdir query
 cd query
 cat ${query_dir}/${Genome}_4_Blastn_results_tophit_nonNative.txt | awk -v min="$min_blast_aln_length" '$4 >=min' | cut -f 1 \
-   | while read line ; do grep "$line" -A 1 ${CDS}/${Genome}.cds.fa | cut -f 1 -d ' ' >> intermediate_A ; done
+   | while read line ; do grep "$line" -A 1 ${CDS}/${Genome}/${Genome}_final.cds.fa | cut -f 1 -d ' ' >> intermediate_A ; done
 grep ">" intermediate_A | sed 's/>//g' | while read line ; do grep "$line" -A 1 intermediate_A > "$line" ; done
 rm intermediate_A
 ls > ../query.txt
